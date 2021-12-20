@@ -27,8 +27,8 @@ function App() {
       <StyledEngineProvider injectFirst>
         <Router>
           <Routes>
-            <Route exact path="/" element={<Notes />}/>
-            <Route path="/create" element={<Create />}/>
+            <Route exact path="/" element={<Notes />} />
+            <Route path="/create" element={<Create />} />
           </Routes>
         </Router>
       </StyledEngineProvider>
