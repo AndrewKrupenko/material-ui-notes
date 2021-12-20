@@ -52,7 +52,7 @@ const NoteCard = ({ note, handleDelete }) => {
         </CardContent>
       </Card>
     </div>
-  );
-};
+  )
+}
 
 export default NoteCard

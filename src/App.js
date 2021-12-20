@@ -36,7 +36,7 @@ function App() {
         </Router>
       </StyledEngineProvider>
     </ThemeProvider>
-  );
+  )
 }
 
 export default App
