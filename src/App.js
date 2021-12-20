@@ -4,7 +4,7 @@ import { purple } from "@mui/material/colors"
 import { StyledEngineProvider } from '@mui/material/styles'
 import Notes from './pages/Notes'
 import Create from './pages/Create'
-import Layout from "./components/Layout";
+import Layout from "./components/Layout"
 
 const theme = createTheme({
   palette: {
@@ -39,4 +39,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

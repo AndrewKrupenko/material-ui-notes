@@ -1,12 +1,16 @@
 import { makeStyles } from "@mui/styles"
 import { AddCircleOutlined, SubjectOutlined } from "@mui/icons-material"
 import { useLocation, useNavigate } from "react-router-dom"
+import { format } from "date-fns"
 import Drawer from '@mui/material/Drawer'
 import Typography from '@mui/material/Typography'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Avatar from '@mui/material/Avatar'
 
 const drawerWidth = 240
 
@@ -16,7 +20,6 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
     },
     page: {
-      backgroundColor: '#f9f9f9',
       width: '100%',
       padding: theme.spacing(3)
     },
@@ -32,6 +35,18 @@ const useStyles = makeStyles((theme) => {
     title: {
       padding: theme.spacing(2)
     },
+    appbar: {
+      backgroundColor: '#fff',
+      color: 'inherit',
+      width: `calc(100% - ${drawerWidth}px)`
+    },
+    toolbar:  theme.mixins.toolbar,
+    date: {
+      flexGrow: 1,
+    },
+    avatar: {
+      marginLeft: theme.spacing(2)
+    }
   }
 })
 
@@ -55,6 +70,25 @@ const Layout = ({ children }) => {
 
   return (
     <div className={classes.root}>
+
+      <AppBar
+        className={classes.appbar}
+        elevation={1}
+      >
+        <Toolbar>
+          <Typography className={classes.date}>
+            Today is the {format(new Date(), 'do MMMM Y')}
+          </Typography>
+          <Typography>
+            Andrew
+          </Typography>
+          <Avatar
+            src="/avatar_icon.png"
+            className={classes.avatar}
+          />
+        </Toolbar>
+      </AppBar>
+
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -72,7 +106,7 @@ const Layout = ({ children }) => {
             <ListItem
               button
               key={item.text}
-              className={location.pathname === item.path && classes.active}
+              className={location.pathname === item.path ? classes.active : null}
               onClick={() => navigate(item.path)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
@@ -83,10 +117,11 @@ const Layout = ({ children }) => {
 
       </Drawer>
       <div className={classes.page}>
+        <div className={classes.toolbar}></div>
         {children}
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default Layout
