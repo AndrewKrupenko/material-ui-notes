@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react"
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import Container from "@mui/material/Container"
 
 export default function Notes() {
   const [notes, setNotes] = useState([])
@@ -10,10 +13,22 @@ export default function Notes() {
   }, [])
 
   return (
-    <div>
+    <Container>
+      <Grid container>
       {notes.map(note => (
-        <p key={note.id}>{note.title}</p>
+        <Grid
+          key={note.id}
+          xs={12}
+          md={6}
+          lg={4}
+          item
+        >
+          <Paper>
+            {note.title}
+          </Paper>
+        </Grid>
       ))}
-    </div>
+      </Grid>
+    </Container>
   )
 }
