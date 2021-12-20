@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@mui/styles'
+import { useNavigate } from 'react-router-dom'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
@@ -21,12 +22,13 @@ const useStyles = makeStyles({
 
 export default function Create() {
   const classes = useStyles()
+  const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [details, setDetails] = useState('')
   const [titleError, setTitleError] = useState(false)
   const [detailsError, setDetailsError] = useState(false)
-  const [category, setCategory] = useState('money');
+  const [category, setCategory] = useState('money')
 
   const handleTitleChange = e => setTitle(e.target.value)
   const handleDetailsChange = e => setDetails(e.target.value)
@@ -41,11 +43,11 @@ export default function Create() {
     details === '' && setDetailsError(true)
 
     if (title && details) {
-      console.log({
-        title,
-        details,
-        category
-      })
+      fetch('http://localhost:8000/notes', {
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({ title, details, category })
+      }).then(() => navigate('/'))
     }
   }
 
@@ -80,7 +82,7 @@ export default function Create() {
           onChange={handleDetailsChange}
           className={classes.field}
           error={detailsError}
-          label="Note Title"
+          label="Note Details"
           variant="outlined"
           color="secondary"
           fullWidth

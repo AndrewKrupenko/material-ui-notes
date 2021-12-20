@@ -1,9 +1,9 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Notes from './pages/Notes'
-import Create from './pages/Create'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { purple } from "@mui/material/colors"
 import { StyledEngineProvider } from '@mui/material/styles'
+import Notes from './pages/Notes'
+import Create from './pages/Create'
 
 const theme = createTheme({
   palette: {
